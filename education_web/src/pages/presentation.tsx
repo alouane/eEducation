@@ -53,14 +53,14 @@ function PresentationPage() {
         <div className={`flex-container ${uiStore.isElectron ? 'draggable' : 'home-cover-web'}`}>
             {uiStore.isElectron ? null :
                 <div>
-                    {/* <div className="header">
+                    <div className="header">
                         <div className="elem">
                             Demander une démo </div>
                         <div className="elem">
                             +1 888 79 625 26 </div>
                         <div className="elem">
                             Ressources </div>
-                    </div> */}
+                    </div>
                     {/* <!-- Navbar --> */}
                     <nav className="navbar navbar-expand-lg navbar-light bg-white">
                         <div className="container flex">
@@ -100,7 +100,7 @@ function PresentationPage() {
                                 </NavLink>
                                 {/* <!-- Mobile button --> */}
                                 <div className="d-lg-none text-center">
-                                    <a href="https://webpixels.io/themes/quick-website-ui-kit" className="btn btn-block btn-sm btn-warning">See more details</a>
+                                    <NavLink  to="/setup" className="btn btn-block btn-sm btn-warning">Lancer une séssion</NavLink>
                                 </div>
                             </div>
                         </div>

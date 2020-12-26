@@ -8,6 +8,11 @@ body,
         display: block;
     }
 
+    .navbar{
+        display: block;
+        padding: 0;
+    }
+
     .container {
         &.flex {
             display: flex;
