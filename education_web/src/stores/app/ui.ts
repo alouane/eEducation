@@ -37,12 +37,15 @@ export class UIStore {
   ]
 
   static languages: any[] = [
+    // {
+    //   text: '中文', name: 'zh-CN',
+    // },
     {
-      text: '中文', name: 'zh-CN',
+      text: 'Fr', name: 'fr'
     },
     {
       text: 'En', name: 'en'
-    }
+    },
   ]
 
 

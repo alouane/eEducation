@@ -195,7 +195,8 @@ const en = {
     'room_type': 'Room Type',
     'room_join': 'Join',
     'short_title': {
-      'title': 'Agora Cloud Class',
+      'setup': 'Setup',
+      'title': 'Edum',
       'subtitle': 'Powered by agora.io, a leading online learning engagement platform',
     },
     'name_too_long': 'name too long, should <= 20 characters',

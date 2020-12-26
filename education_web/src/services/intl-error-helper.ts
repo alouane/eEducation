@@ -10,7 +10,7 @@ export function setIntlError (payload: any) {
 
 function _getIntlError (error: string) {
   try {
-    const locale = GlobalStorage.getLanguage().match(/^zh/) ? 'zh-cn' : 'en-us';
+    const locale = GlobalStorage.getLanguage().match(/^fr/) ? 'fr' : 'en-us';
     const rawData: any = GlobalStorage.read(key)
     const json = rawData || {}
     return json[locale][error]

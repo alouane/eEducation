@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Theme, FormControl, Tooltip } from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
-import {CustomButton} from '@/components/custom-button';
+import { makeStyles } from '@material-ui/core/styles';
+import { CustomButton } from '@/components/custom-button';
 import { RoleRadio } from '@/components/role-radio';
-import {CustomIcon} from '@/components/icon';
-import {FormInput} from '@/components/form-input';
-import {FormSelect} from '@/components/form-select';
-import {LangSelect} from '@/components/lang-select';
-import {useHistory} from 'react-router-dom';
-import {GithubIcon} from '@/components/github-icon';
+import { CustomIcon } from '@/components/icon';
+import { FormInput } from '@/components/form-input';
+import { FormSelect } from '@/components/form-select';
+import { LangSelect } from '@/components/lang-select';
+import { useHistory } from 'react-router-dom';
+import { GithubIcon } from '@/components/github-icon';
 import { t } from '../i18n';
 import { useUIStore, useRoomStore, useAppStore } from '@/hooks';
 import { UIStore } from '@/stores/app';
 import { GlobalStorage } from '@/utils/custom-storage';
 import { EduManager } from '@/sdk/education/manager';
-import {isElectron} from '@/utils/platform';
+import { isElectron } from '@/utils/platform';
 
-const useStyles = makeStyles ((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   formControl: {
     minWidth: '240px',
     maxWidth: '240px',
@@ -37,11 +37,11 @@ const defaultState: SessionInfo = {
   userName: '',
 }
 
-const roomTypes = isElectron ?  UIStore.roomTypes.filter((it: any) => it.value !== 3) : UIStore.roomTypes
+const roomTypes = isElectron ? UIStore.roomTypes.filter((it: any) => it.value !== 3) : UIStore.roomTypes
 
 
 function HomePage() {
-  document.title = t(`home.short_title.title`)
+  document.title = t(`home.short_title.setup`)
 
   const classes = useStyles();
 
@@ -52,7 +52,7 @@ function HomePage() {
   const appStore = useAppStore();
 
   const handleSetting = (evt: any) => {
-    history.push({pathname: '/setting'})
+    history.push({ pathname: '/setting' })
   }
 
   const [lock, setLock] = useState<boolean>(false);
@@ -78,20 +78,20 @@ function HomePage() {
 
   const handleSubmit = () => {
     if (!session.roomName) {
-      setRequired({...required, roomName: t('home.missing_room_name')});
+      setRequired({ ...required, roomName: t('home.missing_room_name') });
       return;
     }
 
     if (!session.userName) {
-      setRequired({...required, userName: t('home.missing_your_name')});
+      setRequired({ ...required, userName: t('home.missing_your_name') });
       return;
     }
 
     if (!session.role) {
-      setRequired({...required, role: t('home.missing_role')});
+      setRequired({ ...required, role: t('home.missing_role') });
       return;
     }
-    
+
     if (!roomTypes[session.roomType]) return;
     appStore.setRoomInfo({
       ...session,
@@ -104,82 +104,89 @@ function HomePage() {
     } else {
       history.push(`/classroom/${path}`)
     }
-      // history.push(`/classroom/${path}`)
+    // history.push(`/classroom/${path}`)
   }
 
   return (
-    <div className={`flex-container ${uiStore.isElectron ? 'draggable' : 'home-cover-web' }`}>
-      {uiStore.isElectron ? null : 
-      <div className="web-menu">
-        <div className="web-menu-container">
-          <div className="short-title">
-            <span className="title">{t('home.short_title.title')}</span>
-            <span className="subtitle">{t('home.short_title.subtitle')}</span>
-            <span className="build-version">{t("build_version")}</span>
-          </div>
-          <div className="setting-container">
-            <div className="flex-row">
-              <Tooltip title={t("icon.upload-log")} placement="top">
-                <span>
-                  <CustomIcon className={lock ? "icon-loading" : "icon-upload"} onClick={handleUpload}></CustomIcon>
-                </span>
-              </Tooltip>
-              <Tooltip title={t("icon.setting")} placement="top">
-                <span>
-                  <CustomIcon className="icon-setting" onClick={handleSetting}/>
-                </span>
-              </Tooltip>
+    <div className={`flex-container ${uiStore.isElectron ? 'draggable' : 'home-cover-web'}`}>
+      {uiStore.isElectron ? null :
+        <div className="">
+          <div className="header">
+
             </div>
-              <LangSelect
-                value={uiStore.language.match(/^zh/) ? 0 : 1}
-                onChange={(evt: any) => {
-                  const value = evt.target.value;
-                  window.location.reload()
-                  if (value === 0) {
-                    uiStore.setLanguage('zh-CN');
-                  } else {
-                    uiStore.setLanguage('en');
-                  }
-                }}
-                items={UIStore.languages}>
-              </LangSelect>
+          <div>
+            <div className="web-menu">
+              <div className="web-menu-container">
+                <div className="short-title">
+                  <span className="title">{t('home.short_title.title')}</span>
+                  <span className="subtitle">{t('home.short_title.subtitle')}</span>
+                  <span className="build-version">{t("build_version")}</span>
+                </div>
+                <div className="setting-container">
+                  <div className="flex-row">
+                    <Tooltip title={t("icon.upload-log")} placement="top">
+                      <span>
+                        <CustomIcon className={lock ? "icon-loading" : "icon-upload"} onClick={handleUpload}></CustomIcon>
+                      </span>
+                    </Tooltip>
+                    <Tooltip title={t("icon.setting")} placement="top">
+                      <span>
+                        <CustomIcon className="icon-setting" onClick={handleSetting} />
+                      </span>
+                    </Tooltip>
+                  </div>
+                  <LangSelect
+                    value={uiStore.language.match(/^fr/) ? 0 : 1}
+                    onChange={(evt: any) => {
+                      const value = evt.target.value;
+                      window.location.reload()
+                      if (value === 0) {
+                        uiStore.setLanguage('fr');
+                      } else {
+                        uiStore.setLanguage('en');
+                      }
+                    }}
+                    items={UIStore.languages}>
+                  </LangSelect>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
       }
       <div className="custom-card">
         {!uiStore.isElectron ? <GithubIcon /> : null}
         <div className="flex-item cover">
-          {uiStore.isElectron ? 
-          <>
-          <div className={`short-title ${GlobalStorage.getLanguage()}`}>
-            <span className="title">{t('home.short_title.title')}</span>
-            <span className="subtitle">{t('home.short_title.subtitle')}</span>
-          </div>
-          <div className={`cover-placeholder ${t('home.cover_class')}`}></div>
-          <div className='build-version'>{t("build_version")}</div>
-          </>
-          : <div className={`cover-placeholder-web ${t('home.cover_class')}`}></div>
+          {uiStore.isElectron ?
+            <>
+              <div className={`short-title ${GlobalStorage.getLanguage()}`}>
+                <span className="title">{t('home.short_title.title')}</span>
+                <span className="subtitle">{t('home.short_title.subtitle')}</span>
+              </div>
+              <div className={`cover-placeholder ${t('home.cover_class')}`}></div>
+              <div className='build-version'>{t("build_version")}</div>
+            </>
+            : <div className={`cover-placeholder-web ${t('home.cover_class')}`}></div>
           }
         </div>
         <div className="flex-item card">
           <div className="position-top card-menu">
-            {uiStore.isElectron && 
-            <>
+            {uiStore.isElectron &&
+              <>
                 <Tooltip title={t("icon.setting")} placement="bottom">
                   <span>
-                    <CustomIcon className="icon-setting" onClick={handleSetting}/>
+                    <CustomIcon className="icon-setting" onClick={handleSetting} />
                   </span>
                 </Tooltip>
                 <div className="icon-container">
                   <CustomIcon className="icon-minimum" onClick={() => {
                     uiStore.windowMinimum()
-                  }}/>
+                  }} />
                   <CustomIcon className="icon-close" onClick={() => {
                     uiStore.windowClose()
-                  }}/>
+                  }} />
                 </div>
-            </>
+              </>
             }
           </div>
           <div className="position-content flex-direction-column">
@@ -214,7 +221,7 @@ function HomePage() {
               />
             </FormControl>
             <FormControl className={classes.formControl}>
-              <FormSelect 
+              <FormSelect
                 Label={t('home.room_type')}
                 value={session.roomType}
                 onChange={(evt: any) => {
@@ -225,21 +232,21 @@ function HomePage() {
                 }}
                 items={roomTypes
                   .map((it: any) => ({
-                  value: it.value,
-                  text: t(`${it.text}`),
-                  path: it.path
-                }))}
+                    value: it.value,
+                    text: t(`${it.text}`),
+                    path: it.path
+                  }))}
               />
             </FormControl>
             <FormControl className={classes.formControl}>
               <RoleRadio value={session.role} type={session.roomType} onChange={(evt: any) => {
-                 setSessionInfo({
-                   ...session,
-                   role: evt.target.value
-                 });
+                setSessionInfo({
+                  ...session,
+                  role: evt.target.value
+                });
               }} requiredText={required.role}></RoleRadio>
             </FormControl>
-            <CustomButton name={t('home.room_join')} onClick={handleSubmit}/>
+            <CustomButton name={t('home.room_join')} onClick={handleSubmit} />
           </div>
         </div>
       </div>
