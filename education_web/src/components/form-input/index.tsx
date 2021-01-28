@@ -25,7 +25,7 @@ const useStyles = makeStyles ((theme: Theme) => ({
 }));
 
 const ALPHABETICAL = /^[a-zA-Z0-9]*/
-const LIMIT_LENGTH = 20
+let LIMIT_LENGTH = 200
 export const FormInput = (props: any) => {
   const classes = useStyles();
 
@@ -41,11 +41,15 @@ export const FormInput = (props: any) => {
 
   const onCompositionEnd = (evt: any) => {
     imeLock.current = false
+    LIMIT_LENGTH = props.LIMIT_LENGTH ? LIMIT_LENGTH : props.LIMIT_LENGTH
     updateValue(props.value.replace(/[^0-9a-zA-Z$]/g, '').slice(0, LIMIT_LENGTH))
   }
 
   const onChange = (evt: any) => {
-    const val = evt.target.value.replace(/[^0-9a-zA-Z$]/g, '').slice(0, LIMIT_LENGTH)
+    LIMIT_LENGTH = props.LIMIT_LENGTH ? LIMIT_LENGTH : props.LIMIT_LENGTH
+    let val = null
+    if(props.alphabetical) val = evt.target.value.replace(/[^0-9a-zA-Z$]/g, '').slice(0, LIMIT_LENGTH)
+    else val = evt.target.value.slice(0, LIMIT_LENGTH)
     if (imeLock.current) {
     } else {
       evt.target.value = val
@@ -60,7 +64,7 @@ export const FormInput = (props: any) => {
         onCompositionStart={onCompositionStart}
         onCompositionEnd={onCompositionEnd}
         inputProps={{
-          maxLength: 20
+          maxLength: LIMIT_LENGTH
         }}
         onChange={onChange}>
       </Input>

@@ -88,7 +88,7 @@ export const SpeakerPage = observer((props: any) => {
               volume={deviceStore.playbackVolume}
               onChange={changeSpeakerVolume}
             />
-            音量: {deviceStore.playbackVolume}
+            Volume: {deviceStore.playbackVolume}
           </div>
         </div>
       </div>

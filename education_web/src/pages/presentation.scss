@@ -1,41 +1,41 @@
 html,
 body,
 #root {
-    height: auto !important;
+    // height: auto !important;
     overflow: visible !important;
 
-    .flex-container {
-        display: block;
-    }
-
-    .navbar{
+    .navbar {
         display: block;
         padding: 0;
     }
 
-    .container {
-        &.flex {
-            display: flex;
+    .presentation {
+        display: block;
+
+        .container {
+            &.flex {
+                display: flex;
+            }
+
+            display: block;
         }
 
-        display: block;
-    }
+        .header {
+            background-color: #39394d;
+            text-align: right;
+            padding: 5px 0px;
 
-    .header {
-        background-color: #39394d;
-        text-align: right;
-        padding: 5px 0px;
-
-        .elem {
-            margin: 0px 24px;
-            color: #fff;
-            line-height: 15px;
-            font-size: 11px;
-            font-weight: 500;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            vertical-align: middle;
+            .elem {
+                margin: 0px 24px;
+                color: #fff;
+                line-height: 15px;
+                font-size: 11px;
+                font-weight: 500;
+                text-transform: uppercase;
+                text-decoration: none;
+                display: inline-block;
+                vertical-align: middle;
+            }
         }
     }
 }

@@ -60,7 +60,7 @@ export default function () {
           <Route path="/replay/record/:roomUuid">
             <ReplayPage />
           </Route>
-          <Route exact path="/setup">
+          <Route exact path="/setup/:roomName?">
             <Home />
           </Route>
           <Route exact path="/">

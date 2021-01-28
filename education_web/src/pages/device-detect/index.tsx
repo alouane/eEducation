@@ -87,7 +87,7 @@ export const DeviceViews: React.FC<DeviceViewsProps> = (props) => {
         <div className="web-menu-position-top">
           <CustomIcon className="icon-close" onClick={() => {
             if (location.pathname === '/setting') {
-              history.push('/')
+              history.push('/setup')
             } else {
               deviceStore.hideSetting()
             }
@@ -101,7 +101,7 @@ export const DeviceViews: React.FC<DeviceViewsProps> = (props) => {
                   uiStore.windowMinimum()
                 }}/>
                 <CustomIcon className="icon-close" onClick={() => {
-                  history.push('/')
+                  history.push('/setup')
                   // uiStore.windowClose()
                 }}/>
               </div>
@@ -140,7 +140,7 @@ export const DeviceDetectPage = observer((props: any) => {
   const deviceStore = useDeviceStore()
   const uiStore = useUIStore()
   return (
-    <div className={`flex-container ${uiStore.isElectron ? 'draggable' : 'home-cover-web'}`}>
+    <div className={`flex-container settings-config ${uiStore.isElectron ? 'draggable' : 'home-cover-web'}`}>
       <DeviceDetect
         onClick={(name: string) => {
           deviceStore.setActiveItem(name)

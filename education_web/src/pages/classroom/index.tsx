@@ -73,7 +73,7 @@ const RoomController = observer(({children}: any) => {
     roomStore.join().then(() => {
       uiStore.addToast(t('toast.successfully_joined_the_room'))
     }).catch((err) => {
-      console.warn(err.msg)
+      console.warn('ffffff', err)
       uiStore.addToast(t('toast.failed_to_join_the_room') + `${JSON.stringify(err.msg)}`)
     })
 

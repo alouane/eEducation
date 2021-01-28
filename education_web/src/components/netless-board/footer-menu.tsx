@@ -72,7 +72,7 @@ const BasicSceneFooterMenu = observer(() => {
       </Tooltip>
       <div className="menu-split" style={{ marginLeft: '7px', marginRight: '7px' }}></div>
       </> : null }
-      <Tooltip title={t(roomStore.recordId ? 'control_items.stop_recording' : 'control_items.recording')} placement="top">
+      {/* <Tooltip title={t(roomStore.recordId ? 'control_items.stop_recording' : 'control_items.recording')} placement="top">
         <span>
           <ControlItem
             loading={roomStore.recording}
@@ -81,7 +81,7 @@ const BasicSceneFooterMenu = observer(() => {
             active={false}
           />
         </span>
-      </Tooltip>
+      </Tooltip> */}
       <Tooltip title={t(roomStore.sharing ? 'control_items.quit_screen_sharing' : 'control_items.screen_sharing')} placement="top">
         <span>
           <ControlItem

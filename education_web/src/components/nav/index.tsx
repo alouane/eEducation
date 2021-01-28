@@ -63,7 +63,7 @@ const StartClassButton = (props: any) => {
 }
 
 const BreakoutUploadButton = observer(() => {
-  
+
   const uiStore = useUIStore()
   const breakoutRoomStore = useBreakoutRoomStore()
 
@@ -86,13 +86,13 @@ const BreakoutUploadButton = observer(() => {
 
   return (
     <Tooltip title={t("icon.upload-log")} placement="bottom">
-      <span>
+      {/* <span>
         <CustomIcon className={lock ? "icon-loading" : "icon-upload"}
           onClick={async (evt: any) => {
             await handleUpload()
           }}>
         </CustomIcon>
-      </span>
+      </span> */}
     </Tooltip>
   )
 })
@@ -122,11 +122,11 @@ const BasicUploadButton = observer(() => {
   return (
     <Tooltip title={t("icon.upload-log")} placement="bottom">
       <span>
-        <CustomIcon className={lock ? "icon-loading" : "icon-upload"}
+        {/* <CustomIcon className={lock ? "icon-loading" : "icon-upload"}
           onClick={async (evt: any) => {
           await handleUpload()
           }}>
-        </CustomIcon>
+        </CustomIcon> */}
       </span>
     </Tooltip>
   )
@@ -168,14 +168,14 @@ export const Nav = observer((props: any) => {
             <StartClassButton isBreakout={isBreakout} /> : null}
         </div>
         <div className="network-state">
-          <div>
+          {/* <div>
             {
               !isCourses ?
                 <div className="nav-information">
                   <span>
                     {uiStore.isWeb ? <span className="net-field">{t('nav.delay')}<span className="net-field-value">{delay}</span></span> : null}
                   </span>
-                  {/* <span className="net-field">Packet Loss Rate: <span className="net-field-value">{lossPacket}</span></span> */}
+                  <span className="net-field">Packet Loss Rate: <span className="net-field-value">{lossPacket}</span></span>
                   <span className="net-field net-field-container">
                     {t('nav.network')}
                     <span className={`net-field-value ${networkQualityIcon[network]}`} style={{ marginLeft: '.2rem' }}>
@@ -195,15 +195,15 @@ export const Nav = observer((props: any) => {
                   </span>
                   {uiStore.isElectron ? <span className="net-field">{t('nav.cpu')}<span className="net-field-value">{cpu}%</span></span> : null}
                 </div> : null}
-          </div>
+          </div> */}
         </div>
         <div className="menu">
           <>
-          <div className="timer">
-            <CustomIcon className="icon-time" disable />
-            <span className="time">{moment.utc(time).format('HH:mm:ss')}</span>
-          </div>
-          <span className="menu-split" />
+            <div className="timer">
+              <CustomIcon className="icon-time" disable />
+              <span className="time">{moment.utc(time).format('HH:mm:ss')}</span>
+            </div>
+            <span className="menu-split" />
           </>
           <div className={platform === 'web' ? "btn-group" : 'electron-btn-group'}>
             {/* {platform === 'web' ?
@@ -217,7 +217,7 @@ export const Nav = observer((props: any) => {
             </Tooltip>
             </> : null
           } */}
-            <UploadButton isBreakout={isBreakout} />
+            {/* <UploadButton isBreakout={isBreakout} /> */}
             <Tooltip title={t("icon.exit-room")} placement="bottom">
               <span>
                 <CustomIcon className="icon-exit" onClick={(evt: any) => {

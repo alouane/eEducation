@@ -50,7 +50,7 @@ function PresentationPage() {
     };
 
     return (
-        <div className={`flex-container ${uiStore.isElectron ? 'draggable' : 'home-cover-web'}`}>
+        <div className={`flex-container presentation ${uiStore.isElectron ? 'draggable' : 'home-cover-web'}`}>
             {uiStore.isElectron ? null :
                 <div>
                     <div className="header">

@@ -1,0 +1,59 @@
+.setup {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+
+    .card {
+        background: #fff;
+        box-shadow: 0 16px 32px 0 rgba(0, 0, 0, .08);
+        border-radius: 4px;
+        width: 480px;
+        // height: 480px;
+        text-align: center;
+        position: relative;
+
+        .logo {
+            margin-top: 34px;
+        }
+
+        .welcome {
+            text-transform: uppercase;
+            color: #979797;
+            font-size: small;
+        }
+
+        .setting-container {
+            position: absolute;
+            top: 20px;
+            right: 16px;
+        }
+    }
+
+    .form {
+        margin: 10px 0px;
+        margin-bottom: 63px;
+
+        .choice {
+            width: 60%;
+            margin-top: 20px;
+            label{
+                text-transform: capitalize;
+            }
+        }
+
+        .submit {
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            margin: 0 17px;
+            background: white;
+            color: #008aff;
+            font-weight: bold;
+            text-align: center;
+        }
+    }
+}

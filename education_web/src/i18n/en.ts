@@ -157,7 +157,7 @@ const en = {
   'chat': {
     'placeholder': 'Input Message',
     'banned': 'Banned',
-    'send': 'send'
+    'send': 'Envoyer'
   },
   'device': {
     'camera': 'Camera',
@@ -190,7 +190,7 @@ const en = {
     'student': 'student',
     'assistant': 'tas',
     'cover_class': 'cover-en',
-    'room_name': 'Room Name',
+    'room_name': 'Cours Name',
     'nickname': 'Your Name',
     'room_type': 'Room Type',
     'room_join': 'Join',
@@ -204,7 +204,7 @@ const en = {
     'mini_class': 'Small Classroom',
     'large_class': 'Lecture Hall',
     'super_mini_class': 'Super Small Classroom',
-    'missing_room_name': 'missing room name',
+    'missing_room_name': 'missing cours name',
     'missing_your_name': 'missing your name',
     'missing_password': 'missing password',
     'missing_role': 'missing role',

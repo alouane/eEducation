@@ -22,12 +22,15 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      border-left: 1px solid #DBE2E5;
+      border: none !important;
+      // border-left: 1px solid #DBE2E5;
       max-width: 281px;
       box-sizing: border-box;
       height: 100%;
+      box-shadow: 0 8px 24px 0 rgba(0,0,0,.08);
 
       .video-board {
+        border: none !important;
         user-select: none;
         display: flex;
         flex-direction: column;
@@ -36,6 +39,7 @@
       }
 
       .chat-board {
+        border: none !important;
         background-color: #FFFFFF;
         box-sizing: border-box;
         flex: 1;

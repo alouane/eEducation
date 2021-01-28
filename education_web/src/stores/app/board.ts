@@ -34,9 +34,9 @@ const pathName = (path: string): string => {
   const reg = /\/([^/]*)\//g;
   reg.exec(path);
   if (RegExp.$1 === 'aria') {
-      return '';
+    return '';
   } else {
-      return RegExp.$1;
+    return RegExp.$1;
   }
 }
 
@@ -89,10 +89,10 @@ export class BoardStore {
       name: 'add',
       text: t('tool.add')
     },
-    {
-      name: 'upload',
-      text: t('tool.upload')
-    },
+    // {
+    //   name: 'upload',
+    //   text: t('tool.upload')
+    // },
     {
       name: 'hand_tool',
       text: t('tool.hand_tool')
@@ -214,58 +214,58 @@ export class BoardStore {
 
   @action
   async init() {
-      let {
-        info: {
-          boardId,
-          boardToken
-        },
-      } = await this.boardService.getBoardInfo()
-      await this.join({
-        uuid: boardId,
-        roomToken: boardToken,
-        // $el: dom,
-        role: this.userRole,
-        isWritable: true,
-        disableDeviceInputs: true,
-        disableCameraTransform: true,
-        disableAutoResize: false
-      })
-      const grantUsers = get(this.room.state.globalState, 'grantUsers', [])
-      const follow = get(this.room.state.globalState, 'follow', 0)
-      this.grantUsers = grantUsers
-      const boardUser = this.grantUsers.includes(this.localUserUuid)
-      if (boardUser) {
-        this._grantPermission = true
-      }
-      this.follow = follow
-      // 默认只有老师不用禁止跟随
-      if (this.userRole !== 'teacher') {
-        if (this.boardClient.room && this.boardClient.room.isWritable) {
-          if (this.follow === FollowState.Follow) {
-            // await this.setWritable(true)
-            this.room.setViewMode(ViewMode.Broadcaster)
-            this.room.disableCameraTransform = true
-            this.room.disableDeviceInputs = true
-            this.lock = true
-          }
-          if (this.follow === FollowState.Freedom) {
-            // await this.setWritable(true)
-            this.room.setViewMode(ViewMode.Freedom)
-            this.room.disableCameraTransform = false
-            this.room.disableDeviceInputs = false
-            this.lock = false
-          }
+    let {
+      info: {
+        boardId,
+        boardToken
+      },
+    } = await this.boardService.getBoardInfo()
+    await this.join({
+      uuid: boardId,
+      roomToken: boardToken,
+      // $el: dom,
+      role: this.userRole,
+      isWritable: true,
+      disableDeviceInputs: true,
+      disableCameraTransform: true,
+      disableAutoResize: false
+    })
+    const grantUsers = get(this.room.state.globalState, 'grantUsers', [])
+    const follow = get(this.room.state.globalState, 'follow', 0)
+    this.grantUsers = grantUsers
+    const boardUser = this.grantUsers.includes(this.localUserUuid)
+    if (boardUser) {
+      this._grantPermission = true
+    }
+    this.follow = follow
+    // 默认只有老师不用禁止跟随
+    if (this.userRole !== 'teacher') {
+      if (this.boardClient.room && this.boardClient.room.isWritable) {
+        if (this.follow === FollowState.Follow) {
+          // await this.setWritable(true)
+          this.room.setViewMode(ViewMode.Broadcaster)
+          this.room.disableCameraTransform = true
+          this.room.disableDeviceInputs = true
+          this.lock = true
         }
-      } else {
-        this.room.disableCameraTransform = false
+        if (this.follow === FollowState.Freedom) {
+          // await this.setWritable(true)
+          this.room.setViewMode(ViewMode.Freedom)
+          this.room.disableCameraTransform = false
+          this.room.disableDeviceInputs = false
+          this.lock = false
+        }
       }
+    } else {
+      this.room.disableCameraTransform = false
+    }
 
-      if (this.hasPermission) {
-        await this.setWritable(true)
-      } else {
-        await this.setWritable(this._grantPermission as boolean)
-      }
-      this.ready = true
+    if (this.hasPermission) {
+      await this.setWritable(true)
+    } else {
+      await this.setWritable(this._grantPermission as boolean)
+    }
+    this.ready = true
   }
 
   @action
@@ -318,9 +318,9 @@ export class BoardStore {
 
   @action
   async join(params: any) {
-    const {role, ...data} = params
+    const { role, ...data } = params
     const identity = role === 'teacher' ? 'host' : 'guest'
-    this._boardClient = new BoardClient({identity})
+    this._boardClient = new BoardClient({ identity })
     this.boardClient.on('onPhaseChanged', (state: any) => {
       if (state === 'disconnected') {
         this.online = false
@@ -348,7 +348,7 @@ export class BoardStore {
     this.room.bindHtmlElement(null)
     window.addEventListener('resize', () => {
       if (this.online && this.room && this.room.isWritable) {
-        this.room.moveCamera({centerX: 0, centerY: 0});
+        this.room.moveCamera({ centerX: 0, centerY: 0 });
         this.room.refreshViewSize();
       }
     })
@@ -370,20 +370,20 @@ export class BoardStore {
     this.activeFooterItem = itemName
     const room = this.room
     if (!room || !room.isWritable) return
-    switch(this.activeFooterItem) {
+    switch (this.activeFooterItem) {
       case 'first_page': {
         this.changePage(0, true)
         return
       }
       case 'last_page': {
-        this.changePage(this.totalPage-1, true)
+        this.changePage(this.totalPage - 1, true)
         return
       }
       case 'next_page': {
         this.changePage(room.state.sceneState.index + 1)
         return
       }
-      case 'prev_page' : {
+      case 'prev_page': {
         this.changePage(room.state.sceneState.index - 1)
         return
       }
@@ -418,7 +418,7 @@ export class BoardStore {
 
     if (!this.room || !this.room.isWritable) return
 
-    switch(this.selector) {
+    switch (this.selector) {
       case 'eraser':
       case 'ellipse':
       case 'rectangle':
@@ -452,7 +452,15 @@ export class BoardStore {
         const currentPath = `/${pathName(scenePath)}`
         if (room.isWritable) {
           room.putScenes(currentPath, [{}], newIndex)
-          room.setSceneIndex(newIndex)
+          console.log('newIndex', newIndex)
+          console.log(room)
+          console.log(currentPath)
+          try {
+            room.setSceneIndex(newIndex)
+          }
+          catch (err) {
+            console.log(err);
+          }
         }
         break;
       }
@@ -470,8 +478,8 @@ export class BoardStore {
 
   @action
   changeColor(color: any) {
-    const {rgb} = color;
-    const {r, g, b} = rgb;
+    const { rgb } = color;
+    const { r, g, b } = rgb;
     if (this.room) {
       this.room.setMemberState({
         strokeColor: [r, g, b]
@@ -493,7 +501,7 @@ export class BoardStore {
   @action
   updateScale(scale: number) {
     if (this.room && this.online) {
-      this.room.moveCamera({scale})
+      this.room.moveCamera({ scale })
     }
     this.scale = scale
   }
@@ -516,11 +524,11 @@ export class BoardStore {
   @observable
   convertingPhase: string = '';
 
-  handleProgress (phase: PPTProgressPhase, percent: number) { 
+  handleProgress(phase: PPTProgressPhase, percent: number) {
     if (phase === PPTProgressPhase.Uploading) {
       if (percent < 1) {
         runInAction(() => {
-          if (this.uploadingPhase !== 'uploading'){
+          if (this.uploadingPhase !== 'uploading') {
             this.uploadingPhase == 'uploading'
           }
         })
@@ -566,8 +574,8 @@ export class BoardStore {
     }
   }
 
-  @computed 
-  get loadingType (): string {
+  @computed
+  get loadingType(): string {
     if (!this._boardClient) return 'loading';
     if (this.converting) return 'converting';
     if (this.loading) return 'loading';
@@ -732,7 +740,7 @@ export class BoardStore {
   @action
   updatePagination() {
     const room = this.room
-    if(this.online && room) {
+    if (this.online && room) {
       this.currentPage = room.state.sceneState.index + 1;
       this.totalPage = room.state.sceneState.scenes.length;
     }
@@ -789,7 +797,7 @@ export class BoardStore {
 
   @observable
   uploadPhase: string = ''
-  
+
   @action
   async uploadDynamicPPT(file: any) {
     if (file && this.online) {
@@ -805,7 +813,7 @@ export class BoardStore {
               this.updateUploadPhase('upload_success');
             }
           }
-  
+
           if (phase === PPTProgressPhase.Converting) {
             if (percent < 1) {
               this.convertPhase !== 'converting' && this.updateConvertPhase('converting');
@@ -848,7 +856,7 @@ export class BoardStore {
               this.updateUploadPhase('upload_success');
             }
           }
-  
+
           if (phase === PPTProgressPhase.Converting) {
             if (percent < 1) {
               this.convertPhase !== 'converting' && this.updateConvertPhase('converting');
@@ -882,7 +890,7 @@ export class BoardStore {
       const room = this.room
       const uploadManager = new UploadManager(this.ossClient, room);
       try {
-        const {fileName, fileType} = resolveFileInfo(file);
+        const { fileName, fileType } = resolveFileInfo(file);
         const path = `/${ossConfig.folder}`
         const uuid = uuidv4();
         const onProgress: PPTProgressListener = (phase: PPTProgressPhase, percent: number) => {
@@ -893,7 +901,7 @@ export class BoardStore {
               this.updateUploadPhase('upload_success');
             }
           }
-  
+
           if (phase === PPTProgressPhase.Converting) {
             if (percent < 1) {
               this.convertPhase !== 'converting' && this.updateConvertPhase('converting');
@@ -940,7 +948,7 @@ export class BoardStore {
           }
           return;
         }
-      } catch(err) {
+      } catch (err) {
         if (this.uploadPhase === 'uploading') {
           this.updateUploadPhase('upload_failure')
         }
@@ -1017,7 +1025,7 @@ export class BoardStore {
   }
 
   @action
-  reset () {
+  reset() {
     this.scenes = []
     this.currentPage = 0
     this.totalPage = 0
@@ -1062,11 +1070,11 @@ export class BoardStore {
     await this.boardService.updateBoardUserState(userUuid, EnumBoardState.revokePermission)
   }
 
-  get userRole () {
+  get userRole() {
     return this.appStore.userRole
   }
 
-  get roomType (): number {
+  get roomType(): number {
     return this.appStore.roomType
   }
 

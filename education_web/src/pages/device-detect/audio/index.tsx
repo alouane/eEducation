@@ -66,8 +66,8 @@ export const AudioPage = observer((props: any) => {
           <span>{t('device.test_microphone')}</span>
         <div className="button-group">
           <div className="items-row">
-            <CustomButton onClick={onNo} className="unconfirm custom-button" name="否"></CustomButton>
-            <CustomButton onClick={onOk} name="是"></CustomButton>
+            <CustomButton onClick={onNo} className="unconfirm custom-button" name="Oui"></CustomButton>
+            <CustomButton onClick={onOk} name="Non"></CustomButton>
           </div>
         </div>
       </div>

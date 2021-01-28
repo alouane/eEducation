@@ -38,6 +38,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   handleClickAudio
 }) => {
 
+  let audioFlag = true
+  let videoFlag = true
+
   const roomStore = useRoomStore()
 
   const handleClose = async () => {
@@ -49,8 +52,10 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
       return handleClickAudio(userUuid, local)
     }
     if (audio) {
+      audioFlag = false
       await roomStore.muteAudio(userUuid, local)
     } else {
+      audioFlag = true
       await roomStore.unmuteAudio(userUuid, local)
     }
   }
