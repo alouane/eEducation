@@ -93,6 +93,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             <span className="media-btn">
               <CustomIcon onClick={handleAudioClick} className={audio ? "icon-speaker-on" : "icon-speaker-off"} data={"audio"} />
               <CustomIcon onClick={handleVideoClick} className={video ? "icons-camera-unmute-s" : "icons-camera-mute-s"} data={"video"} />
+              {/* <CustomIcon onClick={handleVideoClick} className="" /> */}
             </span> : null}
         </div>
         : null
