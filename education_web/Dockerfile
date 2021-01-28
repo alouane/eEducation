@@ -1,7 +1,7 @@
 # Build
 FROM node:latest as node
 WORKDIR /app
-COPY ./education_web .
+COPY . .
 RUN npm install
 RUN npm run build
 
